@@ -1,13 +1,15 @@
 <template>
-  <div>
-    <h1>nadeeeee</h1>
-  </div>
+  <mainHeader title="FitNow" />
+  <router-view></router-view>
 </template>
 
 <script>
+import mainHeader from "./components/mainHeader.vue";
 export default {
   name: "App",
-  components: {},
+  components: {
+    mainHeader,
+  },
 };
 </script>
 
@@ -18,6 +20,5 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
 </style>
