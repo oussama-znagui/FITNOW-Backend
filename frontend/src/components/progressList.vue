@@ -49,6 +49,12 @@
                 class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
                 >Edit</a
               >
+              <button
+                class="bg-red-800 px-4 py-2 rounded-2xl text-gray-50 mx-2"
+                @click="deleteProgress(prg.id)"
+              >
+                Supprimer
+              </button>
             </td>
           </tr>
         </tbody>
@@ -72,9 +78,13 @@ export default {
   },
   methods: {
     async getProgress() {
+      const token = localStorage.getItem("token");
+      const config = {
+        headers: { Authorization: `Bearer ${token}` },
+      };
       let url = "http://127.0.0.1:8000/api/progress/";
       await axios
-        .get(url)
+        .get(url, config)
         .then((response) => {
           this.progress = response.data;
           this.loading = false;
@@ -85,7 +95,15 @@ export default {
           this.loading = false;
         });
     },
+    async deleteProgress(id) {
+      const token = localStorage.getItem("token");
+      const config = {
+        headers: { Authorization: `Bearer ${token}` },
+      };
+      axios.delete("http://127.0.0.1:8000/api/progress/" + id, config);
+    },
   },
+
   mounted() {
     console.log("Progress List c m ");
   },

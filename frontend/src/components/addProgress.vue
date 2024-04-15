@@ -96,10 +96,14 @@ export default {
         formData.append("title", this.Progress.title);
         formData.append("weight", this.Progress.weight);
         formData.append("size", this.Progress.size);
-
+        const token = localStorage.getItem("token");
+        console.log(token);
+        const config = {
+          headers: { Authorization: `Bearer ${token}` },
+        };
         let url = "http://127.0.0.1:8000/api/progress";
         await axios
-          .post(url, formData)
+          .post(url, formData, config)
           .then((Response) => {
             console.log("naaadeee");
             if (Response.status == 200) {

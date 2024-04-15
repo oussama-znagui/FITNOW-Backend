@@ -81,10 +81,14 @@ export default {
     async Login() {
       console.log("login");
       let url = "http://127.0.0.1:8000/api/login";
-      await axios.post(url, {
-        email: "znagui@gmail.com",
-        password: "znagui@gmail.com",
-      });
+      await axios
+        .post(url, {
+          email: "znagui@gmail.com",
+          password: "znagui@gmail.com",
+        })
+        .then(({ data }) => {
+          localStorage.setItem('token', data.access_token);
+        });
       console.log("end");
     },
   },
